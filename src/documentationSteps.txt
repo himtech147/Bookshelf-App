@@ -2,3 +2,7 @@
 Need to add a prop that shows current bookshelf 
 and onclick of option should call a function to change bookshelf 
 
+2. add a bookItem component
+pass data to it 
+
+3. add a shelf component 

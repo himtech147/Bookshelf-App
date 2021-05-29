@@ -7,7 +7,7 @@ export default class BookItem extends Component {
 	static propTypes = {
 		bookUrl: PropTypes.string.isRequired,
 		bookTitle: PropTypes.string.isRequired,
-		bookAuthors: PropTypes.string.isRequired,
+		bookAuthors: PropTypes.array.isRequired,
 	};
 
 	render() {
@@ -21,7 +21,7 @@ export default class BookItem extends Component {
 					</div>
 				</div>
 				<div className="book-title">{bookTitle}</div>
-				<div className="book-authors">{bookAuthors}</div>
+				<div className="book-authors">{bookAuthors.join(", ")}</div>
 			</div>
 		);
 	}
