@@ -1,0 +1,4 @@
+1. Change selector to react component
+Need to add a prop that shows current bookshelf 
+and onclick of option should call a function to change bookshelf 
+
