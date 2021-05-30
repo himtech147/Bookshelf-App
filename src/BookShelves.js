@@ -13,9 +13,9 @@ export default class BookShelves extends Component {
 			<div>
 				<div className="list-books">
 					<div className="list-books-title">
-						<h1>MyReads</h1>
+						<h1>📚 Welcome to My BookShelf 😀</h1>
 					</div>
-					<div className="list-books-content">
+					<div className="list-qbooks-content">
 						<div>
 							<BookShelf
 								shelfTitle="Currently Reading"

@@ -10,21 +10,34 @@ body {
 
 body,
 .app {
-	background: white;
+	background-color: #a55c1b;
+	background-image: linear-gradient(90deg, #a55c1b 0%, #000000 74%);
 }
 
 /* main page */
 
 .list-books-title {
-	padding: 10px 0;
-	background: #2e7c31;
+	/* padding: 10px 0; */
+	width: 100%;
+	height: 100px;
+	background-image: url("./images/wood_back.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position-y: center;
+	background-position-x: center;
+	padding: 20px;
 	text-align: center;
+	border: 5px ridge wheat;
+	z-index: 5;
+	box-shadow: 0px 20px 20px rgba(255, 255, 255, 0.19),
+		0 0 6px rgba(180, 36, 36, 0.23);
 }
 
 .list-books-title h1 {
-	font-weight: 400;
 	margin: 0;
-	color: white;
+	font-weight: bold;
+	font-size: 1.5rem;
+	color: wheat;
 }
 
 .list-books-content {
@@ -36,18 +49,19 @@ body,
 	padding: 0 10px 20px;
 }
 
-@media (min-width: 600px) {
-	.bookshelf {
-		padding: 0 20px 40px;
-	}
-}
-
 .bookshelf-title {
-	border-bottom: 1px solid #dedede;
+	text-align: center;
+	color: wheat;
+	padding: 8px;
+	border: 5px dotted wheat;
+	background: url("./images/wood_back.jpg");
+	z-index: 5;
+	box-shadow: 0px 20px 20px rgba(255, 255, 255, 0.19),
+		0 0 6px rgba(180, 36, 36, 0.23);
 }
 
 .bookshelf-books {
-	text-align: center;
+	max-height: 400px;
 }
 
 .open-search {
@@ -61,7 +75,7 @@ body,
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-	background: #2e7d32;
+	background: #856638;
 	background-image: url("./icons/add.svg");
 	background-repeat: no-repeat;
 	background-position: center;
@@ -72,7 +86,7 @@ body,
 }
 
 .open-search-button:hover {
-	background-color: rgb(0, 102, 0);
+	background-color: rgb(218, 109, 7);
 }
 
 /* search page */
@@ -131,8 +145,16 @@ button:active {
 	padding: 0;
 	margin: 0;
 	display: flex;
+	flex-direction: row;
 	justify-content: center;
-	flex-wrap: wrap;
+
+	/* hide y ovreflow */
+	overflow-y: hidden;
+	overflow-x: scroll;
+}
+
+.books-grid::-webkit-scrollbar {
+	display: none;
 }
 
 .books-grid li {
@@ -142,6 +164,9 @@ button:active {
 
 .book {
 	width: 140px;
+	margin-left: 10px;
+	position: relative;
+	left: 20px;
 }
 
 .book-title,
@@ -151,10 +176,11 @@ button:active {
 
 .book-title {
 	margin-top: 10px;
+	color: wheat;
 }
 
 .book-authors {
-	color: #999;
+	color: white;
 }
 
 .book-top {
@@ -171,12 +197,18 @@ button:active {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
-	background: #60ac5d;
+	background: #fc6602;
 	background-image: url("./icons/arrow-drop-down.svg");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 20px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.option-style {
+	background: brown;
+	color: wheat;
+	font-weight: bolder;
 }
 
 .book-shelf-changer select {

@@ -8,13 +8,21 @@ export default class ShelfSelector extends Component {
 		return (
 			<div>
 				<select>
-					<option value="move" disabled>
+					<option className="option-style" value="move" disabled>
 						Move to...
 					</option>
-					<option value="currentlyReading">Currently Reading</option>
-					<option value="wantToRead">Want to Read</option>
-					<option value="read">Read</option>
-					<option value="none">None</option>
+					<option className="option-style" value="currentlyReading">
+						Currently Reading
+					</option>
+					<option className="option-style" value="wantToRead">
+						Want to Read
+					</option>
+					<option className="option-style" value="read">
+						Read
+					</option>
+					<option className="option-style" value="none">
+						None
+					</option>
 				</select>
 			</div>
 		);
