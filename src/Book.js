@@ -1,22 +1,61 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ReactModal from "react-modal";
+import BookDetails from "./BookDetails";
 
 export default class Book extends Component {
+	constructor() {
+		super();
+		this.state = {
+			showModal: false,
+		};
+
+		this.handleOpenModal = this.handleOpenModal.bind(this);
+		this.handleCloseModal = this.handleCloseModal.bind(this);
+	}
+
+	handleOpenModal() {
+		this.setState({ showModal: true });
+	}
+
+	handleCloseModal() {
+		this.setState({ showModal: false });
+	}
+
 	static propTypes = {
-		bookUrl: PropTypes.string.isRequired,
+		book: PropTypes.object.isRequired,
 	};
 
 	render() {
-		const { bookUrl } = this.props;
+		const { book } = this.props;
 		return (
-			<div
-				className="book-cover"
-				style={{
-					width: 128,
-					height: 188,
-					backgroundImage: `url(${bookUrl})`,
-				}}
-			></div>
+			<div>
+				<div
+					onClick={this.handleOpenModal}
+					className="book-cover"
+					style={{
+						width: 128,
+						height: 188,
+						backgroundImage: `url(${book.imageLinks.thumbnail})`,
+					}}
+				></div>
+				<ReactModal
+					isOpen={this.state.showModal}
+					ariaHideApp={false}
+					contentLabel="Book description"
+					style={{ backgroundColor: "#FBDED7" }}
+				>
+					<div className="book-details-main">
+						<BookDetails className="book-details" book={book}></BookDetails>
+						<button
+							className="book-details-close"
+							onClick={this.handleCloseModal}
+						>
+							X
+						</button>
+					</div>
+				</ReactModal>
+			</div>
 		);
 	}
 }

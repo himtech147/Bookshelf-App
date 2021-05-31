@@ -4,16 +4,10 @@ import { Route } from "react-router-dom";
 import SearchBooks from "./SearchBooks";
 import BookShelves from "./BookShelves";
 import * as BooksApi from "./BooksAPI";
+import LoadingScreen from "./LoadingScreen";
 
 class BooksApp extends React.Component {
 	state = {
-		/**
-		 * TODO: Instead of using this state variable to keep track of which page
-		 * we're on, use the URL in the browser's address bar. This will ensure that
-		 * users can use the browser's back and forward buttons to navigate between
-		 * pages, as well as provide a good URL they can bookmark and share.
-		 */
-		showSearchPage: false,
 		books: [],
 	};
 
@@ -25,18 +19,46 @@ class BooksApp extends React.Component {
 		});
 	}
 
+	handle_selector = (book, new_shelf) => {
+		const index = this.state.books.findIndex((x) => x.title === book.title);
+		const newBooks = this.state.books.slice();
+		BooksApi.update(book, new_shelf).then(() => {
+			newBooks[index].shelf = new_shelf;
+
+			this.setState((currentState) => ({
+				books: [...currentState.books],
+			}));
+		});
+	};
+
 	render() {
 		return (
 			<div className="app">
-				<Route
-					exact
-					path="/"
-					render={() => <BookShelves books={this.state.books} />}
-				/>
-				<Route
-					path="/search"
-					render={({ history }) => <SearchBooks></SearchBooks>}
-				/>
+				{this.state.books.length === 0 ? (
+					<LoadingScreen />
+				) : (
+					<div>
+						<Route
+							exact
+							path="/"
+							render={() => (
+								<BookShelves
+									books={this.state.books}
+									handleSelector={this.handle_selector}
+								/>
+							)}
+						/>
+						<Route
+							path="/search"
+							render={() => (
+								<SearchBooks
+									books={this.state.books}
+									handleSelector={this.handle_selector}
+								/>
+							)}
+						/>
+					</div>
+				)}
 			</div>
 		);
 	}
