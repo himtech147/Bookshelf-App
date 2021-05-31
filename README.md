@@ -13,3 +13,5 @@ Then follow below steps
 2. npm start
 
 Project will be hosted on http://localhost:3000/
+
+![BookShelf Demo](/bookshelf.gif)
