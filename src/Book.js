@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import ReactModal from "react-modal";
 import BookDetails from "./BookDetails";
 
+// React Modal example taken from https://www.npmjs.com/package/react-modal. Other than the modal,
+// the code in all files are my independent work.
 export default class Book extends Component {
 	constructor() {
 		super();
