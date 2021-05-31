@@ -5,11 +5,13 @@ import BookItem from "./BookItem";
 export default class BookShelf extends Component {
 	static propTypes = {
 		shelfTitle: PropTypes.string.isRequired,
+		shelfId: PropTypes.string.isRequired,
 		shelfBooks: PropTypes.array.isRequired,
+		handleSelector: PropTypes.func.isRequired,
 	};
 
 	render() {
-		const { shelfTitle, shelfBooks } = this.props;
+		const { shelfTitle, shelfId, shelfBooks, handleSelector } = this.props;
 		return (
 			<div className="bookshelf">
 				<h2 className="bookshelf-title">{shelfTitle}</h2>
@@ -18,9 +20,9 @@ export default class BookShelf extends Component {
 						{shelfBooks.map((book) => (
 							<li key={book.id}>
 								<BookItem
-									bookUrl={book.imageLinks.thumbnail}
-									bookTitle={book.title}
-									bookAuthors={book.authors}
+									book={book}
+									shelfId={shelfId}
+									handleSelector={handleSelector}
 								/>
 							</li>
 						))}

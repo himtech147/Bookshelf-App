@@ -5,23 +5,27 @@ import ShelfSelector from "./ShelfSelector";
 
 export default class BookItem extends Component {
 	static propTypes = {
-		bookUrl: PropTypes.string.isRequired,
-		bookTitle: PropTypes.string.isRequired,
-		bookAuthors: PropTypes.array.isRequired,
+		book: PropTypes.object.isRequired,
+		shelfId: PropTypes.string.isRequired,
+		handleSelector: PropTypes.func.isRequired,
 	};
 
 	render() {
-		const { bookUrl, bookTitle, bookAuthors } = this.props;
+		const { book, shelfId, handleSelector } = this.props;
 		return (
 			<div className="book">
 				<div className="book-top">
-					<Book bookUrl={bookUrl}></Book>
+					<Book book={book}></Book>
 					<div className="book-shelf-changer">
-						<ShelfSelector />
+						<ShelfSelector
+							handleSelector={handleSelector}
+							book={book}
+							shelfId={shelfId}
+						/>
 					</div>
 				</div>
-				<div className="book-title">{bookTitle}</div>
-				<div className="book-authors">{bookAuthors.join(", ")}</div>
+				<div className="book-title">{book.title}</div>
+				<div className="book-authors">{book.authors.join(", ")}</div>
 			</div>
 		);
 	}

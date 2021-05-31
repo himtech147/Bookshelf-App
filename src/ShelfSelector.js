@@ -1,13 +1,29 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 export default class ShelfSelector extends Component {
-	// static propTypes = {};
+	static propTypes = {
+		handleSelector: PropTypes.func.isRequired,
+		book: PropTypes.object.isRequired,
+		shelfId: PropTypes.string.isRequired,
+	};
 
+	state = {
+		value: this.props.shelfId,
+	};
+
+	changeValue = (event) => {
+		this.setState({
+			value: event.target.value,
+		});
+		console.log("book in selector", this.props.book);
+		console.log("asd");
+		this.props.handleSelector(this.props.book, event.target.value);
+	};
 	render() {
 		return (
 			<div>
-				<select>
+				<select onChange={this.changeValue} value={this.state.value}>
 					<option className="option-style" value="move" disabled>
 						Move to...
 					</option>
