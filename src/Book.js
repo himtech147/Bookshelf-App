@@ -45,7 +45,7 @@ export default class Book extends Component {
 					isOpen={this.state.showModal}
 					ariaHideApp={false}
 					contentLabel="Book description"
-					style={{ backgroundColor: "#FBDED7" }}
+					style={{ backgroundColor: "#fbded7" }}
 				>
 					<div className="book-details-main">
 						<BookDetails className="book-details" book={book}></BookDetails>

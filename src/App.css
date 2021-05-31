@@ -262,6 +262,7 @@ button:active {
 	font-size: 0.8em;
 }
 
+/* loader */
 .loader-screen {
 	position: absolute;
 	width: 40%;
@@ -336,7 +337,6 @@ button:active {
 	width: 100px;
 	height: 100px;
 	background-color: red;
-
 	position: relative;
 	top: 0;
 	bottom: 0;
