@@ -16,18 +16,23 @@ export class SearchBooks extends Component {
 		allBooks: [],
 	};
 	async handleSearch(query, shelfBooks) {
-		let allBooks = await BooksApi.search(query);
-		if (Array.isArray(allBooks)) {
-			shelfBooks.forEach(function (shelfBook) {
-				let index = allBooks.findIndex((x) => x.id === shelfBook.id);
-				console.log(index);
-				if (index !== -1) {
-					allBooks[index].shelf = shelfBook.shelf;
-				}
-			});
-		}
+		try {
+			let allBooks = await BooksApi.search(query);
+			if (Array.isArray(allBooks)) {
+				shelfBooks.forEach(function (shelfBook) {
+					let index = allBooks.findIndex((x) => x.id === shelfBook.id);
+					if (index !== -1) {
+						allBooks[index].shelf = shelfBook.shelf;
+					}
+				});
+			}
 
-		this.setState({ allBooks });
+			this.setState({ allBooks });
+		} catch {
+			console.log(
+				"api fetch failed, please use terms defined in SEARCH_TERMS.md file"
+			);
+		}
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -44,7 +49,7 @@ export class SearchBooks extends Component {
 
 	render() {
 		const { query } = this.state;
-		const { books, handleSelector } = this.props;
+		const { handleSelector } = this.props;
 		let showingBooks = [];
 		if (Array.isArray(this.state.allBooks)) {
 			showingBooks =
