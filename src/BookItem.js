@@ -1,9 +1,13 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Book from "./Book";
 import ShelfSelector from "./ShelfSelector";
 
-export default class BookItem extends Component {
+// Udacity review
+// PureComponent is exactly like React.Component with one difference= it implements shouldComponentUpdate. This allows it to prevent renders based on some heuristic. It implements this as a shallow equality check on the new props vs the old props, and likewise for state.
+// But wait! PureComponent might not be the silver bullet for all components. When you have a state/props that are nested, the PureComponent is not a good fit because the checking that it does is really superficial. To make your component fast anyway, you should always implement the shouldComponentUpdate on React.Component.
+
+export default class BookItem extends PureComponent {
 	static propTypes = {
 		book: PropTypes.object.isRequired,
 		shelfId: PropTypes.string.isRequired,
@@ -24,8 +28,10 @@ export default class BookItem extends Component {
 						/>
 					</div>
 				</div>
-				<div className="book-title">{book.title}</div>
-				<div className="book-authors">{book.authors.join(", ")}</div>
+				<div className="book-title">{book?.title}</div>
+				<div className="book-authors">
+					{book.authors && book?.authors.join(", ")}
+				</div>
 			</div>
 		);
 	}

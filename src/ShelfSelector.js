@@ -18,6 +18,14 @@ export default class ShelfSelector extends Component {
 		});
 		this.props.handleSelector(this.props.book, event.target.value);
 	};
+
+	shelves = [
+		{ value: "currentlyReading", label: "Currently Reading" },
+		{ value: "wantToRead", label: "Want to Read" },
+		{ value: "read", label: "Read" },
+		{ value: "none", label: "None" },
+	];
+
 	render() {
 		return (
 			<div>
@@ -25,18 +33,15 @@ export default class ShelfSelector extends Component {
 					<option className="option-style" value="move" disabled>
 						Move to...
 					</option>
-					<option className="option-style" value="currentlyReading">
-						Currently Reading
-					</option>
-					<option className="option-style" value="wantToRead">
-						Want to Read
-					</option>
-					<option className="option-style" value="read">
-						Read
-					</option>
-					<option className="option-style" value="none">
-						None
-					</option>
+					{this.shelves.map((item) => (
+						<option
+							key={item.value}
+							className="option-style"
+							value={item.value}
+						>
+							{item.label}
+						</option>
+					))}
 				</select>
 			</div>
 		);

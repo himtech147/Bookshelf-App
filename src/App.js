@@ -11,25 +11,38 @@ class BooksApp extends React.Component {
 		books: [],
 	};
 
-	componentDidMount() {
-		BooksApi.getAll().then((books) => {
-			this.setState(() => ({
-				books,
-			}));
-		});
+	async componentDidMount() {
+		const books = await BooksApi.getAll();
+		this.setState({ books });
 	}
 
 	handle_selector = (book, new_shelf) => {
 		const index = this.state.books.findIndex((x) => x.title === book.title);
-		const newBooks = this.state.books.slice();
 		BooksApi.update(book, new_shelf).then(() => {
-			newBooks[index].shelf = new_shelf;
+			if (index !== -1) {
+				const newBooks = this.state.books.slice();
+				newBooks[index].shelf = new_shelf;
 
-			this.setState((currentState) => ({
-				books: [...currentState.books],
-			}));
+				this.setState((currentState) => ({
+					books: [...newBooks],
+				}));
+				console.log(`Moved book with ${book.title} to shelf ${new_shelf}`);
+			} else {
+				book.shelf = new_shelf;
+				this.setState((currentState) => ({
+					books: currentState.books.concat([book]),
+				}));
+				console.log(`Added ${book.title} to shelf ${new_shelf}`);
+			}
 		});
 	};
+
+	shouldComponentUpdate(nextProps, nextState) {
+		if (this.state.books !== nextState.books) {
+			return true;
+		}
+		return false;
+	}
 
 	render() {
 		return (

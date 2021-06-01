@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import BookItem from "./BookItem";
 
-export default class BookShelf extends Component {
+export default class BookShelf extends PureComponent {
 	static propTypes = {
 		shelfTitle: PropTypes.string.isRequired,
 		shelfId: PropTypes.string.isRequired,

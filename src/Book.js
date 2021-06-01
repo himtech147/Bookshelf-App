@@ -1,28 +1,27 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import ReactModal from "react-modal";
 import BookDetails from "./BookDetails";
 
-// React Modal example taken from https://www.npmjs.com/package/react-modal. Other than the modal,
-// the code in all files are my independent work.
-export default class Book extends Component {
+export default class Book extends PureComponent {
 	constructor() {
 		super();
-		this.state = {
-			showModal: false,
-		};
 
 		this.handleOpenModal = this.handleOpenModal.bind(this);
 		this.handleCloseModal = this.handleCloseModal.bind(this);
 	}
 
-	handleOpenModal() {
-		this.setState({ showModal: true });
-	}
+	state = {
+		showModal: false,
+	};
 
-	handleCloseModal() {
+	handleOpenModal = () => {
+		this.setState({ showModal: true });
+	};
+
+	handleCloseModal = () => {
 		this.setState({ showModal: false });
-	}
+	};
 
 	static propTypes = {
 		book: PropTypes.object.isRequired,
@@ -38,7 +37,7 @@ export default class Book extends Component {
 					style={{
 						width: 128,
 						height: 188,
-						backgroundImage: `url(${book.imageLinks.thumbnail})`,
+						backgroundImage: `url(${book.imageLinks?.thumbnail})`,
 					}}
 				></div>
 				<ReactModal

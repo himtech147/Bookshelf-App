@@ -17,24 +17,24 @@ export default class BookDetails extends Component {
 					style={{
 						width: 128,
 						height: 188,
-						backgroundImage: `url(${book.imageLinks.thumbnail})`,
+						backgroundImage: `url(${book.imageLinks?.thumbnail})`,
 					}}
 				></div>
 				<p>
 					<b>Title :</b>
-					{book.title}
+					{book?.title}
 				</p>
 				<p>
 					<b>Authors :</b>
-					{book.authors.join(", ")}
+					{book?.authors.join(", ")}
 				</p>
 				<p>
 					<b>Rating :</b>
-					{book.averageRating || "NA"}
+					{book?.averageRating || "NA"}
 				</p>
 				<div>
 					<b>Description: </b>
-					{book.description}
+					{book?.description}
 				</div>
 			</div>
 		);
